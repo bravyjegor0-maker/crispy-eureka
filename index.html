@@ -1,0 +1,1391 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Деятели науки XVII века</title>
+
+<style>
+:root {
+    --gold: #e8c77e;
+    --white: #f5f3ed;
+    --muted: #b7c3d6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse at 15% 20%, #304a70 0%, transparent 38%),
+        radial-gradient(ellipse at 85% 80%, #35405e 0%, transparent 38%),
+        linear-gradient(135deg, #0a1425, #172943 55%, #101a2d);
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .17;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    background: #6c8fc2;
+    top: -100px;
+    right: -100px;
+}
+
+body::after {
+    background: #b58b48;
+    bottom: -150px;
+    left: -100px;
+}
+
+/* SVG-ФИЛЬТРЫ ДЛЯ ИМИТАЦИИ ПРЕЛОМЛЕНИЯ */
+
+.liquid-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* ЭКРАНЫ */
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 20px;
+    animation: screenIn .65s ease both;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ПЕРВЫЙ ЭКРАН */
+
+#intro {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.intro-content {
+    max-width: 850px;
+    width: 100%;
+}
+
+.eyebrow {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.intro-symbol {
+    font-size: 75px;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 25px rgba(232,199,126,.3));
+}
+
+.intro-content h1 {
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.08;
+    color: #f8f1df;
+    margin-bottom: 25px;
+}
+
+.intro-content h1 span {
+    color: var(--gold);
+}
+
+.intro-description {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+.intro-line {
+    width: 90px;
+    height: 2px;
+    background: var(--gold);
+    margin: 35px auto;
+    opacity: .7;
+}
+
+/* КНОПКА ПРИСТУПИМ */
+
+.start-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 35px;
+    padding: 18px 35px 18px 40px;
+    min-width: 230px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,.45);
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.22),
+        rgba(255,255,255,.06)
+    );
+    color: white;
+    font-family: inherit;
+    font-size: 19px;
+    cursor: pointer;
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.25),
+        inset 0 1px 1px rgba(255,255,255,.4);
+    transition: .35s ease;
+}
+
+.start-button .arrow {
+    font-family: Arial, sans-serif;
+    font-size: 27px;
+    transition: transform .3s;
+}
+
+.start-button:hover {
+    transform: translateY(-5px) scale(1.04);
+    background: rgba(255,255,255,.24);
+    box-shadow: 0 15px 45px rgba(0,0,0,.35);
+}
+
+.start-button:hover .arrow {
+    transform: translateX(8px);
+}
+
+/* МЕНЮ */
+
+#menu {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 65px;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.menu-header .eyebrow {
+    margin-bottom: 14px;
+}
+
+.menu-header h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    color: #f7f0df;
+    margin-bottom: 14px;
+}
+
+.menu-header p {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.cards-grid {
+    width: 100%;
+    max-width: 1050px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.topic-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.22);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.17),
+            rgba(255,255,255,.045)
+        );
+    backdrop-filter: blur(18px) saturate(155%);
+    -webkit-backdrop-filter: blur(18px) saturate(155%);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.2),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    text-align: left;
+    color: white;
+    font-family: inherit;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .35s, border-color .35s, background .35s;
+}
+
+.topic-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(232,199,126,.11);
+    filter: blur(35px);
+    right: -90px;
+    bottom: -100px;
+    transition: .4s;
+}
+
+.topic-card:hover {
+    transform: translateY(-8px) scale(1.025);
+    border-color: rgba(232,199,126,.65);
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.24),
+        rgba(255,255,255,.08)
+    );
+}
+
+.topic-card:hover::before {
+    transform: scale(1.6);
+}
+
+.card-number {
+    color: var(--gold);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+    position: relative;
+}
+
+.card-icon {
+    font-size: 30px;
+    margin-bottom: 13px;
+    position: relative;
+}
+
+.topic-card h3 {
+    font-size: 20px;
+    line-height: 1.35;
+    position: relative;
+    font-weight: normal;
+}
+
+.card-open {
+    position: absolute;
+    right: 22px;
+    bottom: 20px;
+    font-size: 23px;
+    color: var(--gold);
+    transition: transform .3s;
+}
+
+.topic-card:hover .card-open {
+    transform: translateX(6px);
+}
+
+.menu-footer {
+    margin-top: 35px;
+    color: #9cabc1;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ПОДЛОЖКА ОКНА */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: rgba(3,8,18,.68);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.modal-overlay.open {
+    display: flex;
+    animation: overlayIn .3s ease both;
+}
+
+@keyframes overlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ОКНО СТАТЬИ */
+
+.article-window {
+    position: relative;
+    width: min(850px, 100%);
+    height: min(760px, 88vh);
+    border-radius: 27px;
+    overflow: hidden;
+    color: #27364c;
+    background: #f4efe4;
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.5),
+        0 0 0 1px rgba(255,255,255,.3);
+    animation: windowIn .45s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes windowIn {
+    from {
+        opacity: 0;
+        transform: scale(.84) translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ПРОКРУТКА */
+
+.article-scroll {
+    height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 105px 65px 125px;
+    overscroll-behavior: contain;
+}
+
+.article-scroll::-webkit-scrollbar {
+    width: 7px;
+}
+
+.article-scroll::-webkit-scrollbar-thumb {
+    background: rgba(145,119,73,.45);
+    border-radius: 20px;
+}
+
+.article-scroll h2 {
+    color: #233957;
+    font-size: clamp(27px, 4vw, 37px);
+    line-height: 1.2;
+    margin-bottom: 27px;
+    padding-bottom: 17px;
+    border-bottom: 2px solid #c6a45e;
+}
+
+.article-scroll h3 {
+    color: #94702f;
+    font-size: 22px;
+    margin: 27px 0 12px;
+}
+
+.article-scroll p,
+.article-scroll li {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.article-scroll ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.article-scroll strong {
+    color: #243d5e;
+}
+
+.article-scroll .lead {
+    font-size: 20px;
+    color: #53647b;
+    line-height: 1.7;
+}
+
+.article-scroll .fact {
+    padding: 19px 23px;
+    margin: 25px 0;
+    border-left: 4px solid #c6a45e;
+    border-radius: 0 13px 13px 0;
+    background: #e9e1d1;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* ЖИДКОЕ СТЕКЛО */
+
+.glass-edge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    height: 90px;
+    pointer-events: none;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.25) 0%,
+            rgba(255,255,255,.12) 35%,
+            rgba(255,255,255,.035) 75%,
+            rgba(255,255,255,.015) 100%
+        );
+
+    backdrop-filter:
+        blur(24px)
+        saturate(210%)
+        brightness(1.12);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(210%)
+        brightness(1.12);
+
+    border-color: rgba(255,255,255,.28);
+}
+
+/* Световой блик на стекле */
+
+.glass-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            105deg,
+            transparent 5%,
+            rgba(255,255,255,.12) 25%,
+            rgba(255,255,255,.45) 42%,
+            rgba(255,255,255,.08) 55%,
+            transparent 78%
+        );
+    opacity: .65;
+    pointer-events: none;
+}
+
+/* Эффект линзы и преломления */
+
+.glass-edge::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    background: rgba(255,255,255,.025);
+    backdrop-filter: url(#liquidDistortion);
+    -webkit-backdrop-filter: url(#liquidDistortion);
+    opacity: .8;
+    pointer-events: none;
+}
+
+.glass-edge.top {
+    top: 0;
+    border-bottom: 1px solid rgba(255,255,255,.25);
+    border-radius: 27px 27px 0 0;
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.6),
+        inset 0 -1px 2px rgba(255,255,255,.15),
+        0 7px 25px rgba(43,54,70,.06);
+}
+
+.glass-edge.bottom {
+    bottom: 0;
+    height: 105px;
+
+    background:
+        linear-gradient(
+            0deg,
+            rgba(255,255,255,.27) 0%,
+            rgba(255,255,255,.13) 35%,
+            rgba(255,255,255,.045) 75%,
+            rgba(255,255,255,.015) 100%
+        );
+
+    border-top: 1px solid rgba(255,255,255,.28);
+    border-radius: 0 0 27px 27px;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.6),
+        inset 0 -1px 2px rgba(255,255,255,.2),
+        0 -7px 25px rgba(43,54,70,.06);
+}
+
+.glass-edge.bottom::before {
+    background:
+        linear-gradient(
+            255deg,
+            transparent 8%,
+            rgba(255,255,255,.15) 30%,
+            rgba(255,255,255,.42) 48%,
+            rgba(255,255,255,.1) 60%,
+            transparent 90%
+        );
+}
+
+/* Красный крестик */
+
+.close-button {
+    position: absolute;
+    z-index: 10;
+    top: 17px;
+    right: 20px;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,80,80,.35);
+    background: rgba(225,55,55,.13);
+    color: #d83232;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: .25s;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.close-button:hover {
+    background: #d83232;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* СТРЕЛКА ПРОКРУТКИ */
+
+.scroll-down {
+    position: absolute;
+    z-index: 10;
+    bottom: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(159,126,65,.45);
+    background: rgba(255,255,255,.45);
+    color: #8c6a31;
+    font-size: 25px;
+    cursor: pointer;
+    transition: .25s;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    animation: arrowFloat 1.7s infinite;
+}
+
+.scroll-down:hover {
+    background: rgba(217,194,142,.8);
+    color: #24344b;
+}
+
+@keyframes arrowFloat {
+    0%, 100% { margin-bottom: 0; }
+    50% { margin-bottom: -5px; }
+}
+
+/* АДАПТАЦИЯ */
+
+@media (max-width: 850px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .screen {
+        padding: 30px 15px;
+    }
+
+    #menu {
+        padding-top: 45px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .topic-card {
+        min-height: 155px;
+        padding: 20px;
+    }
+
+    .card-number {
+        margin-bottom: 13px;
+    }
+
+    .card-icon {
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+
+    .topic-card h3 {
+        display: inline;
+        font-size: 19px;
+    }
+
+    .modal-overlay {
+        padding: 9px;
+    }
+
+    .article-window {
+        height: 91vh;
+        border-radius: 20px;
+    }
+
+    .article-scroll {
+        padding: 95px 24px 115px;
+    }
+
+    .article-scroll p,
+    .article-scroll li {
+        font-size: 16px;
+    }
+
+    .article-scroll .lead {
+        font-size: 18px;
+    }
+
+    .glass-edge {
+        height: 75px;
+    }
+
+    .glass-edge.bottom {
+        height: 88px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SVG-ФИЛЬТРЫ ДЛЯ ИСКАЖЕНИЯ СВЕТА -->
+
+<svg class="liquid-filters" xmlns="http://www.w3.org/2000/svg">
+    <filter id="liquidDistortion">
+        <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.018 0.035"
+            numOctaves="2"
+            seed="8"
+            result="noise"/>
+        <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="12"
+            xChannelSelector="R"
+            yChannelSelector="G"/>
+    </filter>
+</svg>
+
+
+<!-- ПЕРВЫЙ ЭКРАН -->
+
+<section class="screen active" id="intro">
+    <div class="intro-content">
+        <div class="eyebrow">История науки · XVII век</div>
+        <div class="intro-symbol">🔭</div>
+
+        <h1>
+            Деятели науки<br>
+            <span>XVII века</span>
+        </h1>
+
+        <div class="intro-line"></div>
+
+        <p class="intro-description">
+            Эпоха великих открытий, смелых идей и учёных,
+            которые изменили представление человечества
+            об устройстве Вселенной и окружающего мира.
+        </p>
+
+        <button class="start-button" onclick="showMenu()">
+            Приступим
+            <span class="arrow">→</span>
+        </button>
+    </div>
+</section>
+
+
+<!-- ГЛАВНОЕ МЕНЮ -->
+
+<section class="screen" id="menu">
+    <div class="menu-header">
+        <div class="eyebrow">План исследования</div>
+        <h2>Выбери тему</h2>
+        <p>
+            Нажми на карточку, чтобы открыть отдельную статью<br>
+            и узнать больше о научной революции XVII века.
+        </p>
+    </div>
+
+    <div class="cards-grid">
+
+        <button class="topic-card" onclick="openArticle(0)">
+            <div class="card-number">01 / ВВЕДЕНИЕ</div>
+            <div class="card-icon">📜</div>
+            <h3>Научная революция XVII века</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(1)">
+            <div class="card-number">02 / АСТРОНОМИЯ</div>
+            <div class="card-icon">🔭</div>
+            <h3>Галилей и Кеплер</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(2)">
+            <div class="card-number">03 / МАТЕМАТИКА</div>
+            <div class="card-icon">📐</div>
+            <h3>Рене Декарт</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(3)">
+            <div class="card-number">04 / ФИЗИКА</div>
+            <div class="card-icon">⚙️</div>
+            <h3>Исаак Ньютон и Гюйгенс</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(4)">
+            <div class="card-number">05 / ХИМИЯ</div>
+            <div class="card-icon">⚗️</div>
+            <h3>Роберт Бойль</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(5)">
+            <div class="card-number">06 / БИОЛОГИЯ</div>
+            <div class="card-icon">🧬</div>
+            <h3>Гук и Левенгук</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(6)">
+            <div class="card-number">07 / ОБЩЕСТВА</div>
+            <div class="card-icon">🏛️</div>
+            <h3>Развитие научных обществ</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+        <button class="topic-card" onclick="openArticle(7)">
+            <div class="card-number">08 / ЗАКЛЮЧЕНИЕ</div>
+            <div class="card-icon">✨</div>
+            <h3>Значение открытий XVII века</h3>
+            <span class="card-open">↗</span>
+        </button>
+
+    </div>
+
+    <div class="menu-footer">
+        Деятели науки XVII века · Интерактивная презентация
+    </div>
+</section>
+
+
+<!-- ОКНО СТАТЬИ -->
+
+<div class="modal-overlay" id="modal" onclick="outsideClose(event)">
+    <div class="article-window" id="articleWindow">
+
+        <div class="glass-edge top"></div>
+
+        <button class="close-button"
+                onclick="closeArticle()"
+                aria-label="Закрыть">×</button>
+
+        <div class="article-scroll" id="articleContent"></div>
+
+        <div class="glass-edge bottom"></div>
+
+        <button class="scroll-down"
+                id="scrollDown"
+                onclick="scrollArticle()"
+                aria-label="Прокрутить вниз">↓</button>
+
+    </div>
+</div>
+
+
+<script>
+
+/* СОДЕРЖАНИЕ СТАТЕЙ */
+
+const articles = [
+
+`
+<div class="eyebrow">01 · Введение</div>
+<h2>Научная революция XVII века</h2>
+
+<p class="lead">
+XVII век стал одним из важнейших периодов в истории науки.
+Именно в это время произошли изменения, которые заложили
+основы современной научной картины мира.
+</p>
+
+<h3>Как изменилась наука?</h3>
+
+<p>
+Раньше многие представления об устройстве природы основывались
+на трудах древних авторов и философских рассуждениях.
+Однако учёные XVII века всё чаще обращались к наблюдениям,
+опытам и математическим расчётам.
+</p>
+
+<p>
+Они стремились не просто описывать явления, а проверять
+свои предположения на практике. Так постепенно формировался
+современный научный метод.
+</p>
+
+<h3>Главные особенности эпохи</h3>
+
+<ul>
+<li>Развитие экспериментального метода исследования.</li>
+<li>Широкое применение математики в естественных науках.</li>
+<li>Совершенствование телескопов и микроскопов.</li>
+<li>Новые открытия в астрономии, физике, химии и биологии.</li>
+<li>Появление научных обществ и обмен результатами исследований.</li>
+</ul>
+
+<div class="fact">
+<strong>Главная идея эпохи:</strong>
+природу нужно изучать с помощью наблюдений, экспериментов
+и доказательств, а не только опираться на авторитеты прошлого.
+</div>
+
+<h3>Почему этот век называют революционным?</h3>
+
+<p>
+Открытия учёных изменили взгляды людей на Вселенную,
+движение планет, строение вещества и живые организмы.
+Наука стала самостоятельной и быстро развивающейся областью
+человеческой деятельности.
+</p>
+`,
+
+`
+<div class="eyebrow">02 · Астрономия</div>
+<h2>Галилео Галилей и Иоганн Кеплер</h2>
+
+<h3>Галилео Галилей (1564–1642)</h3>
+
+<p class="lead">
+Галилей был итальянским физиком, астрономом и математиком.
+Он сыграл огромную роль в развитии экспериментального
+естествознания.
+</p>
+
+<p>
+В 1609 году Галилей усовершенствовал телескоп и начал
+использовать его для наблюдения за небесными телами.
+В 1610 году он обнаружил четыре крупнейших спутника Юпитера.
+</p>
+
+<p>
+Учёный также наблюдал фазы Венеры, горы и кратеры на Луне,
+а также множество звёзд, невидимых невооружённым глазом.
+Эти наблюдения поддерживали представление о том,
+что Земля не является центром всех небесных движений.
+</p>
+
+<div class="fact">
+Галилей не был первым человеком, предложившим
+гелиоцентрическую систему, но его наблюдения стали
+важными аргументами в её пользу.
+</div>
+
+<h3>Иоганн Кеплер (1571–1630)</h3>
+
+<p>
+Кеплер был немецким астрономом и математиком.
+Он открыл три закона движения планет, которые описывают,
+как планеты обращаются вокруг Солнца.
+</p>
+
+<p>
+Самое известное открытие Кеплера заключалось в том,
+что планеты движутся не по идеальным окружностям,
+а по эллиптическим орбитам.
+</p>
+
+<h3>Значение открытий</h3>
+
+<p>
+Работы Галилея и Кеплера изменили астрономию.
+Их исследования стали важной основой для дальнейшего
+развития небесной механики и работ Исаака Ньютона.
+</p>
+`,
+
+`
+<div class="eyebrow">03 · Математика</div>
+<h2>Рене Декарт</h2>
+
+<p class="lead">
+Рене Декарт (1596–1650) — французский философ,
+математик и учёный, оказавший большое влияние
+на развитие европейской науки.
+</p>
+
+<h3>Аналитическая геометрия</h3>
+
+<p>
+Одним из главных достижений Декарта стало развитие
+аналитической геометрии. Он связал алгебру и геометрию,
+показав, как геометрические фигуры можно описывать
+с помощью уравнений.
+</p>
+
+<p>
+С его именем связана прямоугольная система координат,
+которую часто называют декартовой. Она позволяет
+определять положение точек на плоскости с помощью чисел.
+</p>
+
+<h3>Основные труды</h3>
+
+<p>
+В 1637 году вышел труд Декарта «Геометрия».
+В нём были изложены идеи, оказавшие влияние
+на развитие математики.
+</p>
+
+<h3>Философский метод</h3>
+
+<p>
+Декарт считал, что знания необходимо подвергать
+проверке разумом и логикой. Он использовал метод
+сомнения, чтобы найти положения, в которых можно
+быть уверенным.
+</p>
+
+<div class="fact">
+<strong>Значение:</strong> идеи Декарта помогли объединить
+математические методы и философское мышление,
+а его система координат используется в математике
+и сегодня.
+</div>
+`,
+
+`
+<div class="eyebrow">04 · Физика</div>
+<h2>Исаак Ньютон и Христиан Гюйгенс</h2>
+
+<h3>Исаак Ньютон (1642/1643–1727)</h3>
+
+<p class="lead">
+Ньютон — английский физик и математик, один из основателей
+классической физики.
+</p>
+
+<p>
+В 1687 году он опубликовал труд «Математические начала
+натуральной философии». В нём были сформулированы
+три закона механики и закон всемирного тяготения.
+</p>
+
+<h3>Три закона механики</h3>
+
+<ul>
+<li><strong>Первый закон:</strong> тело сохраняет состояние покоя или равномерного прямолинейного движения, если на него не действует результирующая сила.</li>
+<li><strong>Второй закон:</strong> изменение движения связано с действующей на тело силой.</li>
+<li><strong>Третий закон:</strong> действия двух тел друг на друга равны по величине и противоположны по направлению.</li>
+</ul>
+
+<p>
+Закон всемирного тяготения объяснил, почему тела
+притягиваются друг к другу. Он позволил связать
+движение земных предметов и небесных тел
+общими физическими законами.
+</p>
+
+<h3>Христиан Гюйгенс (1629–1695)</h3>
+
+<p>
+Гюйгенс был нидерландским математиком, физиком
+и астрономом. В 1655 году он открыл спутник Сатурна Титан.
+Также он предложил объяснение природы колец Сатурна
+как системы колец вокруг планеты.
+</p>
+
+<p>
+В 1656–1657 годах Гюйгенс разработал конструкцию
+маятниковых часов. Он также внёс большой вклад
+в развитие волновой теории света.
+</p>
+
+<div class="fact">
+Ньютон и Гюйгенс внесли огромный вклад в развитие физики:
+один — в механику и гравитацию, другой — в изучение
+света, движения и точного измерения времени.
+</div>
+`,
+
+`
+<div class="eyebrow">05 · Химия</div>
+<h2>Роберт Бойль</h2>
+
+<p class="lead">
+Роберт Бойль (1627–1691) — английский учёный,
+которого считают одним из основателей современной химии.
+</p>
+
+<h3>Новая химия</h3>
+
+<p>
+В 1661 году Бойль опубликовал книгу «Химик-скептик».
+В ней он выступил против некоторых старых представлений
+о составе веществ и подчеркнул важность эксперимента
+в химических исследованиях.
+</p>
+
+<p>
+Бойль стремился изучать свойства веществ с помощью
+точных опытов. Он исследовал газы и их поведение
+при изменении давления и объёма.
+</p>
+
+<h3>Закон Бойля</h3>
+
+<p>
+Учёный установил зависимость между давлением и объёмом
+газа при постоянной температуре.
+</p>
+
+<div class="fact">
+<strong>Закон Бойля:</strong>
+при постоянной температуре давление данной массы газа
+обратно пропорционально его объёму.
+<br><br>
+Формула: P × V = const
+</div>
+
+<h3>Значение работ</h3>
+
+<p>
+Исследования Бойля способствовали превращению химии
+в экспериментальную науку. Его подход повлиял
+на дальнейшее развитие химических исследований.
+</p>
+`,
+
+`
+<div class="eyebrow">06 · Биология</div>
+<h2>Роберт Гук и Антони ван Левенгук</h2>
+
+<h3>Роберт Гук (1635–1703)</h3>
+
+<p class="lead">
+Английский учёный Роберт Гук прославился исследованиями
+с помощью микроскопа.
+</p>
+
+<p>
+В 1665 году он выпустил книгу «Микрография»,
+в которой представил результаты наблюдений
+за мелкими объектами и различными материалами.
+</p>
+
+<p>
+Изучая под микроскопом тонкий срез пробки,
+Гук увидел множество маленьких ячеек.
+Он назвал их «клетками». Так этот термин вошёл
+в научное употребление.
+</p>
+
+<h3>Антони ван Левенгук (1632–1723)</h3>
+
+<p>
+Нидерландский исследователь Левенгук создавал
+и совершенствовал микроскопы с сильным увеличением.
+Он наблюдал капли воды, ткани, кровь и различные
+микроскопические организмы.
+</p>
+
+<p>
+В 1670-х годах он описал бактерии и простейшие организмы,
+которые до этого были неизвестны науке.
+</p>
+
+<div class="fact">
+Открытия Гука и Левенгука помогли людям увидеть
+микроскопический мир и стали важным шагом
+в развитии биологии и микробиологии.
+</div>
+
+<h3>Почему это было важно?</h3>
+
+<p>
+Благодаря микроскопам учёные получили возможность
+исследовать то, что невозможно увидеть обычным глазом.
+Это полностью изменило представления о строении
+живых организмов и окружающей среде.
+</p>
+`,
+
+`
+<div class="eyebrow">07 · Научные общества</div>
+<h2>Развитие научных обществ</h2>
+
+<p class="lead">
+В XVII веке наука постепенно становилась коллективным
+занятием. Учёные начали объединяться, чтобы обсуждать
+результаты опытов и обмениваться открытиями.
+</p>
+
+<h3>Лондонское королевское общество</h3>
+
+<p>
+Одним из важнейших научных объединений стало
+Лондонское королевское общество, основанное в 1660 году.
+Оно поддерживало развитие естественных наук,
+экспериментов и распространение научных знаний.
+</p>
+
+<p>
+Учёные могли представлять свои исследования,
+обсуждать наблюдения и знакомиться с результатами
+работ коллег.
+</p>
+
+<h3>Почему общества были важны?</h3>
+
+<ul>
+<li>Помогали распространять новые знания.</li>
+<li>Создавали условия для совместных исследований.</li>
+<li>Позволяли проверять и обсуждать результаты опытов.</li>
+<li>Способствовали развитию научного общения.</li>
+</ul>
+
+<h3>Новый этап развития науки</h3>
+
+<p>
+Научные общества стали важной частью формирования
+современной научной системы. Исследования всё чаще
+публиковались и становились доступными другим учёным.
+</p>
+
+<div class="fact">
+Наука переставала быть делом отдельных мыслителей:
+она превращалась в международное сообщество
+исследователей, которые развивали знания вместе.
+</div>
+`,
+
+`
+<div class="eyebrow">08 · Заключение</div>
+<h2>Значение открытий XVII века</h2>
+
+<p class="lead">
+Научная революция XVII века изменила представления
+человечества о природе, Вселенной и самом человеке.
+</p>
+
+<h3>Что изменили учёные?</h3>
+
+<p>
+Галилей и Кеплер помогли изменить астрономию.
+Декарт развивал математические методы.
+Ньютон заложил основы классической механики.
+Гюйгенс исследовал свет и движение.
+Бойль способствовал развитию экспериментальной химии.
+Гук и Левенгук открыли новые возможности изучения
+микроскопического мира.
+</p>
+
+<h3>Главные результаты эпохи</h3>
+
+<ul>
+<li>Укрепление экспериментального метода.</li>
+<li>Развитие современной физики и астрономии.</li>
+<li>Новые достижения в математике и химии.</li>
+<li>Появление основ микроскопических исследований.</li>
+<li>Формирование научных обществ.</li>
+</ul>
+
+<div class="fact">
+<strong>Главный итог:</strong>
+учёные XVII века заложили основы многих современных
+наук. Их открытия продолжают влиять на образование,
+технологии и научные исследования.
+</div>
+
+<h3>Спасибо за внимание!</h3>
+
+<p>
+История науки показывает, что великие открытия
+начинаются с любопытства, смелых вопросов
+и стремления проверить свои идеи.
+</p>
+`
+
+];
+
+
+/* ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ */
+
+function showMenu() {
+    document.getElementById("intro").classList.remove("active");
+    document.getElementById("menu").classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+/* ЭЛЕМЕНТЫ ОКНА */
+
+const modal = document.getElementById("modal");
+const articleContent = document.getElementById("articleContent");
+const scrollButton = document.getElementById("scrollDown");
+
+
+/* ОТКРЫТИЕ НОВОЙ СТАТЬИ */
+
+function openArticle(index) {
+
+    // Сбрасываем прокрутку ДО вставки новой статьи
+    articleContent.scrollTop = 0;
+
+    // Удаляем старую статью
+    articleContent.innerHTML = "";
+
+    // Вставляем выбранную статью
+    articleContent.innerHTML = articles[index];
+
+    // Сбрасываем положение прокрутки ПОСЛЕ вставки
+    articleContent.scrollTop = 0;
+
+    // Убираем остаточное плавное движение прокрутки
+    articleContent.style.scrollBehavior = "auto";
+
+    // Показываем окно
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    // Сразу прячем стрелку
+    scrollButton.style.display = "none";
+
+    // Принудительно фиксируем начало статьи
+    requestAnimationFrame(() => {
+        articleContent.scrollTop = 0;
+
+        requestAnimationFrame(() => {
+            articleContent.scrollTop = 0;
+            articleContent.style.scrollBehavior = "smooth";
+            updateScrollButton();
+        });
+    });
+}
+
+
+/* ЗАКРЫТИЕ СТАТЬИ */
+
+function closeArticle() {
+
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+
+    // Полностью очищаем статью
+    articleContent.innerHTML = "";
+
+    // Сбрасываем положение прокрутки
+    articleContent.scrollTop = 0;
+
+    // Скрываем стрелку
+    scrollButton.style.display = "none";
+}
+
+
+/* ЗАКРЫТИЕ ПРИ НАЖАТИИ СНАРУЖИ */
+
+function outsideClose(event) {
+    if (event.target === modal) {
+        closeArticle();
+    }
+}
+
+
+/* ПРОКРУТКА ВНИЗ */
+
+function scrollArticle() {
+    articleContent.scrollBy({
+        top: articleContent.clientHeight * 0.65,
+        behavior: "smooth"
+    });
+}
+
+
+/* ПОКАЗ СТРЕЛКИ */
+
+function updateScrollButton() {
+
+    const canScroll =
+        articleContent.scrollHeight >
+        articleContent.clientHeight + 10;
+
+    const atBottom =
+        articleContent.scrollTop +
+        articleContent.clientHeight >=
+        articleContent.scrollHeight - 10;
+
+    scrollButton.style.display =
+        canScroll && !atBottom ? "block" : "none";
+}
+
+
+/* СЛУШАТЕЛЬ ПРОКРУТКИ */
+
+articleContent.addEventListener("scroll", updateScrollButton);
+
+
+/* ЗАКРЫТИЕ КЛАВИШЕЙ ESCAPE */
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeArticle();
+    }
+});
+
+</script>
+
+</body>
+</html>
+
